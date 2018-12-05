@@ -1,0 +1,31 @@
+.review-card {
+  width: 80%;
+  height: 725px;
+  margin-left: 9%;
+}
+
+.review-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+.right-section {
+  width: 50%;
+  height: 50%;
+  float: right;
+}
+
+.left-section {
+  width: 50%;
+  margin-left: 5%;
+}
+
+.review-image {
+  width: 70%;
+  margin-left: 20%;
+  margin-top: 7%
+}
+
+.review-content {
+  width: 50%;
+}
