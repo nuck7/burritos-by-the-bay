@@ -3,7 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase_config: {
+    apiKey: "AIzaSyDzLO40whxMyhOE-s9jpl2rwKzW0_IezM0",
+    authDomain: "burritos-by-the-bay.firebaseapp.com",
+    databaseURL: "https://burritos-by-the-bay.firebaseio.com",
+    projectId: "burritos-by-the-bay",
+    storageBucket: "burritos-by-the-bay.appspot.com",
+    messagingSenderId: "487009757764"
+  }
 };
 
 /*

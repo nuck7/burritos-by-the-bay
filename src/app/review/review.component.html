@@ -1,7 +1,7 @@
-<mat-card class="review-card">
+<mat-card *ngFor="let review of reviews" class="review-card">
   <mat-card-header>
     <!-- <div mat-card-avatar class="review-header-image"></div> -->
-    <mat-card-title>Taqueria El Castillito - Duboce</mat-card-title>
+    <mat-card-title>{{ review.data().restaurant_name }}</mat-card-title>
     <!--<mat-card-subtitle>Dog Breed</mat-card-subtitle>-->
   </mat-card-header>
   <mat-card-content>
@@ -13,60 +13,28 @@
         <mat-tab-group>
           <mat-tab label="Details">
             <mat-list>
-              <mat-list-item>Rating: 6.53</mat-list-item>
-              <mat-list-item>Order: Burrito - $11.73</mat-list-item>
-              <mat-list-item>Meat: Carne Asada - 7</mat-list-item>
-              <mat-list-item>Beans: Refried - 3.5</mat-list-item>
-              <mat-list-item>Rice: 4</mat-list-item>
-              <mat-list-item>Guacamole: 8</mat-list-item>
-              <mat-list-item>Crema: 6</mat-list-item>
-              <mat-list-item>Salsa: 8</mat-list-item>
-              <mat-list-item>Tortilla: 5</mat-list-item>
-              <mat-list-item>Cheese: 7</mat-list-item>
-              <mat-list-item>Size: 9.5</mat-list-item>
-              <mat-list-item>Taste: 7</mat-list-item>
+              <mat-list-item>Rating: {{ review.data().overall_rating }}</mat-list-item>
+              <mat-list-item>Order: {{ review.data().order }} - ${{review.data().cost}}</mat-list-item>
+              <mat-list-item>Meat: {{ review.data().meat_type }} - {{ review.data().meat }}</mat-list-item>
+              <mat-list-item>Beans: {{ review.data().beans_type | titlecase }} - {{ review.data().beans }}</mat-list-item>
+              <mat-list-item>Rice: {{ review.data().rice }}</mat-list-item>
+              <mat-list-item>Guacamole: {{ review.data().guacamole }}</mat-list-item>
+              <mat-list-item>Crema: {{ review.data().crema }}</mat-list-item>
+              <mat-list-item>Salsa: {{ review.data().salsa }}</mat-list-item>
+              <mat-list-item>Tortilla: {{ review.data().tortilla }}</mat-list-item>
+              <mat-list-item>Cheese: {{ review.data().cheese }}</mat-list-item>
+              <mat-list-item>Size: {{ review.data().size }}</mat-list-item>
+              <mat-list-item>Taste: {{ review.data().taste }}</mat-list-item>
             </mat-list>
           </mat-tab>
           <mat-tab label="Description">
             <p>
-              This taqueria in Duboce holds it's own compared to it's cousin in the mission. Although similarly ranked,
-              their burritos are not too similar. While the mission location was an all-around solid experience, this
-              joint
-              took me through a few big ups and downs. I'll start with the fact that this burrito was a bit more
-              expensive, but
-              was also one of the biggest around. The first few bites had me thinking I found one of the best spots in
-              The
-              Bay, but a slow decline had me forgetting what that first bite even tasted like. A good third of the
-              burrito was
-              super cold because of the crema and salsa (pico de gallo), and it was hard to distribute into each bite.
-              So
-              even from the start the whole burrito was just warm and by the end was not so hot. But! At least all of
-              the
-              ingredients in those first bites were really good. The asada had a nice fresh char from the griddle, some
-              good meat
-              juices, lots of guac and crema. As I got farther down much of the meat was pretty flavorless and
-              un-charred, and the
-              rice
-              and
-              bad refried beans stole the show...a show that nobody wants to see. The tortilla was grilled and as
-              standard
-              as
-              they get. I'll give some extra props to the line cook who stuffed that burrito and somehow still folded
-              all
-              the
-              ingredients inside. The salsa bar was ok. They had one, had options, but none were amazing. Still a plus
-              over
-              lots of places. So all in all this was one of the better SF burritos, fully equipped with high highs and
-              medium
-              lows. Not cheap, huge, and satisfying for any burrito craving. For comparison, this burrito was probably
-              the
-              third biggest I've ever had at a taqueria behind El Paisa@.com and El Farolito.
-
+              {{ review.data().comments }}
             </p>
           </mat-tab>
           <mat-tab label="Other Notes">
             <p>
-              Salsa bar with 5 types of salsa and picked jalapeños and carrots.
+              {{ review.data().other }}
             </p>
           </mat-tab>
         </mat-tab-group>
@@ -74,7 +42,9 @@
     </section>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button>LIKE</button>
+    <a [routerLink]="['/form']" [queryParams]="{review: review.id}">
+      <button mat-button>EDIT</button>
+    </a>
     <button mat-button>SHARE</button>
   </mat-card-actions>
 </mat-card>
