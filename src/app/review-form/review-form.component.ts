@@ -3,126 +3,118 @@ import { BurritoService } from '../core/services/burrito.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormControl } from '@angular/forms';
 
+import { switchMap } from 'rxjs/operators';
+import { Burrito } from '../shared/models/burrito.model';
+
 @Component({
   selector: 'app-review-form',
   templateUrl: './review-form.component.html',
   styleUrls: ['./review-form.component.css']
 })
 export class ReviewFormComponent implements OnInit {
+  /*review: Burrito = {
+    restaurant_name: '',
+    order: '',
+    cost: 0,
+    comments: '',
+    meat_type: '',
+    meat: 0,
+    beans_type: '',
+    beans: 0,
+    rice: 0,
+    guacamole_type: '',
+    guacamole: 0,
+    crema: 0,
+    salsa: 0,
+    tortilla: 0,
+    cheese: 0,
+    other: '',
+    size: 0,
+    taste: 0,
+    overall_rating: 0,
+    picture: '',
+    date: new Date(),
+    yelp_link: '',
+    id: ''
+  }*/
 
   review
-  public restaurant_name
-  public order
-  public cost
-  public comments
-  public meat_type
-  public meat
-  public beans_type
-  public beans
-  public rice
-  public guacamole_type
-  public guacamole
-  public crema
-  public salsa
-  public tortilla
-  public cheese
-  public other
-  public size
-  public taste
-  public overall_rating
-  public picture
-  public date
-  public yelp_link
-
-
-
 
   beans_type_options = [
     {
       label: 'Pinto',
-      value: 'pinto'
+      value: 'Pinto'
     },
     {
       label: 'Black',
-      value: 'black'
+      value: 'Black'
     },
     {
       label: 'Refried',
-      value: 'refried'
+      value: 'Refried'
     }
   ]
 
   guacamole_type_options = [
     {
       label: 'Yes',
-      value: 'yes'
+      value: 'Yes'
     },
     {
       label: 'No',
-      value: 'no'
+      value: 'No'
     },
     {
       label: 'Avocado',
-      value: 'avocado'
+      value: 'Avocado'
     }
   ]
 
   meat_type_options = [
     {
       label: 'Carne Asada',
-      value: 'carne_asada'
+      value: 'Carne Asada'
     },
     {
       label: 'Barbacoa',
-      value: 'barbacoa'
+      value: 'Barbacoa'
     },
     {
       label: 'Al Pastor',
-      value: 'al_pastor'
+      value: 'Al Pastor'
     }
   ]
 
   constructor(private burritoService: BurritoService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      //console.log(params['review'])
-      this.review = this.burritoService.getBurrito(params['review'])
-      this.restaurant_name = this.review.data().restaurant_name
-      this.order = this.review.data().order
-      this.cost = this.review.data().cost
-      this.comments = this.review.data().comments
-      this.meat_type = this.review.data().meat_type
-      this.meat = this.review.data().meat
-      this.beans_type = this.review.data().beans_type
-      this.beans = this.review.data().beans
-      this.rice = this.review.data().rice
-      this.guacamole_type = this.review.data().guacamole_type
-      this.guacamole = this.review.data().guacamole
-      this.crema = this.review.data().crema
-      this.salsa = this.review.data().salsa
-      this.tortilla = this.review.data().tortilla
-      this.cheese = this.review.data().cheese
-      this.other = this.review.data().other
-      this.size = this.review.data().size
-      this.taste = this.review.data().taste
-      this.overall_rating = this.review.data().overall_rating
-      this.picture = this.review.data().picture
-      this.date = this.review.data().date
-      this.yelp_link = this.review.data().yelp_link
+      try {
+        this.route.queryParams.pipe(
+          switchMap(params => this.burritoService.getBurrito(params['review']))
+        ).subscribe(data => {
+          console.log(`Data subscribe: ${JSON.stringify(data)}`)
+          this.review = data
+        })
+        console.log(`Review variable: ${JSON.stringify(this.review)}`)
 
-    })
-    //console.log(this.review.id)
+      }
+      catch (err) {
+        console.log(err)
+      }
   }
 
   parseDate(date) {
     let parsedDate = new FormControl(new Date(date))
     return parsedDate.value
   }
+  submitReview(formValues) {
+    console.log(`Form data: ${JSON.stringify(formValues)}`)
+    this.burritoService.addBurrito(formValues)
+  }
 
   updateReview(review_id) {
-    
-    let reviewChanges = {
+
+    /*let reviewChanges = {
       beans: this.beans,
       beans_type: this.beans_type,
       cheese: this.cheese,
@@ -145,8 +137,8 @@ export class ReviewFormComponent implements OnInit {
       taste: this.taste,
       tortilla: this.tortilla,
       yelp_link: this.yelp_link
-    }
-    //console.log(`form: ${JSON.stringify(reviewChanges)}`)
-    this.burritoService.updateBurritoReview(review_id, reviewChanges)
+    }*/
+    console.log(`form: ${review_id}`)
+    this.burritoService.updateBurritoReview(review_id, review_id)
   }
 }

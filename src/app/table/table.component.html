@@ -1,140 +1,143 @@
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
 <div class="example-container mat-elevation-z8">
-  <table mat-table [dataSource]="burritos" class="burrito-table ">
+  <table mat-table matSort [dataSource]="burritos" class="burrito-table ">
 
     <!--- Note that these columns can be defined in any order.
             The actual rendered columns are set as a property on the row definition" -->
 
     <!-- Restaurant Name Column -->
     <ng-container matColumnDef="restaurant_name">
-      <th mat-header-cell *matHeaderCellDef> Restaurant Name </th>
-      <td mat-cell *matCellDef="let review"> {{review.data().restaurant_name}} </td>
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Restaurant Name </th>
+      <td mat-cell *matCellDef="let review"> {{review.restaurant_name}} </td>
     </ng-container>
 
     <!-- Date Column -->
     <ng-container matColumnDef="date">
-      <th mat-header-cell *matHeaderCellDef> Date </th>
-      <td mat-cell *matCellDef="let review"> {{review.data().date}} </td>
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Date </th>
+      <td mat-cell *matCellDef="let review"> {{review.date}} </td>
     </ng-container>
 
     <!-- Beans Type Column -->
     <ng-container matColumnDef="beans_type">
-      <th mat-header-cell *matHeaderCellDef> Beans Type </th>
-      <td mat-cell *matCellDef="let review"> {{review.data().beans_type}} </td>
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Beans Type </th>
+      <td mat-cell *matCellDef="let review"> {{review.beans_type}} </td>
     </ng-container>
 
     <!-- Guacamole Type Column -->
     <ng-container matColumnDef="guacamole_type">
-      <th mat-header-cell *matHeaderCellDef> Guacamole Type </th>
-      <td mat-cell *matCellDef="let review"> {{review.data().guacamole_type}} </td>
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Guacamole Type </th>
+      <td mat-cell *matCellDef="let review"> {{review.guacamole_type}} </td>
     </ng-container>
 
     <!-- Meat Type Column -->
     <ng-container matColumnDef="meat_type">
-      <th mat-header-cell *matHeaderCellDef> Meat Type </th>
-      <td mat-cell *matCellDef="let review"> {{review.data().meat_type}} </td>
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Meat Type </th>
+      <td mat-cell *matCellDef="let review"> {{review.meat_type}} </td>
     </ng-container>
 
     <!-- Order Column -->
     <ng-container matColumnDef="order">
-      <th mat-header-cell *matHeaderCellDef> Order </th>
-      <td mat-cell *matCellDef="let review"> {{review.data().order}} </td>
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Order </th>
+      <td mat-cell *matCellDef="let review"> {{review.order}} </td>
     </ng-container>
 
     <!-- Comments Column -->
     <!--<ng-container matColumnDef="comments">
       <th mat-header-cell *matHeaderCellDef> Comments </th>
-      <td mat-cell *matCellDef="let review"> {{review.data().comments}} </td>
+      <td mat-cell *matCellDef="let review"> {{review.comments}} </td>
     </ng-container>-->
 
     <!-- Other Column -->
     <ng-container matColumnDef="other">
-      <th mat-header-cell *matHeaderCellDef> Other </th>
-      <td mat-cell *matCellDef="let review"> {{review.data().other}} </td>
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Other </th>
+      <td mat-cell *matCellDef="let review"> {{review.other}} </td>
     </ng-container>
 
     <!-- Cost Column -->
     <ng-container matColumnDef="cost">
-      <th mat-header-cell *matHeaderCellDef> Cost </th>
-      <td mat-cell *matCellDef="let review"> {{review.data().cost}} </td>
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Cost </th>
+      <td mat-cell *matCellDef="let review"> {{review.cost}} </td>
     </ng-container>
 
     <!-- Crema Column -->
     <ng-container matColumnDef="crema">
-      <th mat-header-cell *matHeaderCellDef> Crema </th>
-      <td mat-cell *matCellDef="let review"> {{review.data().crema}} </td>
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Crema </th>
+      <td mat-cell *matCellDef="let review"> {{review.crema}} </td>
     </ng-container>
 
     <!-- Beans Column -->
     <ng-container matColumnDef="beans">
-      <th mat-header-cell *matHeaderCellDef> Beans </th>
-      <td mat-cell *matCellDef="let review"> {{review.data().beans}} </td>
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Beans </th>
+      <td mat-cell *matCellDef="let review"> {{review.beans}} </td>
     </ng-container>
 
     <!-- Cheese Column -->
     <ng-container matColumnDef="cheese">
-      <th mat-header-cell *matHeaderCellDef> Cheese </th>
-      <td mat-cell *matCellDef="let review"> {{review.data().cheese}} </td>
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Cheese </th>
+      <td mat-cell *matCellDef="let review"> {{review.cheese}} </td>
     </ng-container>
 
 
     <!-- Guacamole Column -->
     <ng-container matColumnDef="guacamole">
-      <th mat-header-cell *matHeaderCellDef> Guacamole </th>
-      <td mat-cell *matCellDef="let review"> {{review.data().guacamole}} </td>
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Guacamole </th>
+      <td mat-cell *matCellDef="let review"> {{review.guacamole}} </td>
     </ng-container>
 
     <!-- Meat Column -->
     <ng-container matColumnDef="meat">
-      <th mat-header-cell *matHeaderCellDef> Meat </th>
-      <td mat-cell *matCellDef="let review"> {{review.data().meat}} </td>
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Meat </th>
+      <td mat-cell *matCellDef="let review"> {{review.meat}} </td>
     </ng-container>
 
     <!-- Rice Column -->
     <ng-container matColumnDef="rice">
-      <th mat-header-cell *matHeaderCellDef> Rice </th>
-      <td mat-cell *matCellDef="let review"> {{review.data().rice}} </td>
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Rice </th>
+      <td mat-cell *matCellDef="let review"> {{review.rice}} </td>
     </ng-container>
 
     <!-- Salsa Column -->
     <ng-container matColumnDef="salsa">
-      <th mat-header-cell *matHeaderCellDef> Salsa </th>
-      <td mat-cell *matCellDef="let review"> {{review.data().salsa}} </td>
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Salsa </th>
+      <td mat-cell *matCellDef="let review"> {{review.salsa}} </td>
     </ng-container>
 
     <!-- Size Column -->
     <ng-container matColumnDef="size">
-      <th mat-header-cell *matHeaderCellDef> Size </th>
-      <td mat-cell *matCellDef="let review"> {{review.data().size}} </td>
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Size </th>
+      <td mat-cell *matCellDef="let review"> {{review.size}} </td>
     </ng-container>
 
     <!-- Taste Column -->
     <ng-container matColumnDef="taste">
-      <th mat-header-cell *matHeaderCellDef> Taste </th>
-      <td mat-cell *matCellDef="let review"> {{review.data().taste}} </td>
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Taste </th>
+      <td mat-cell *matCellDef="let review"> {{review.taste}} </td>
     </ng-container>
 
     <!-- Tortilla Column -->
     <ng-container matColumnDef="tortilla">
-      <th mat-header-cell *matHeaderCellDef> Tortilla </th>
-      <td mat-cell *matCellDef="let review"> {{review.data().tortilla}} </td>
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Tortilla </th>
+      <td mat-cell *matCellDef="let review"> {{review.tortilla}} </td>
     </ng-container>
 
     <!-- Overall Rating Column -->
     <ng-container matColumnDef="overall_rating">
-      <th mat-header-cell *matHeaderCellDef> Overall Rating </th>
-      <td mat-cell *matCellDef="let review"> {{review.data().overall_rating}} </td>
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Overall Rating </th>
+      <td mat-cell *matCellDef="let review"> {{review.overall_rating}} </td>
     </ng-container>
 
     <!-- Picture Column -->
     <ng-container matColumnDef="picture">
-      <th mat-header-cell *matHeaderCellDef> Picture </th>
-      <td mat-cell *matCellDef="let review"> {{review.data().picture}} </td>
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Picture </th>
+      <td mat-cell *matCellDef="let review"> {{review.picture}} </td>
     </ng-container>
 
     <!-- Yelp Link Column -->
     <!--<ng-container matColumnDef="yelp_link" stickyEnd>
       <th mat-header-cell *matHeaderCellDef> Yelp Link </th>
-      <td mat-cell *matCellDef="let review"> {{review.data().yelp_link}} </td>
+      <td mat-cell *matCellDef="let review"> {{review.yelp_link}} </td>
     </ng-container> -->
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

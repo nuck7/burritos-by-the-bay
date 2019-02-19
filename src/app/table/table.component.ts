@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort, MatTableDataSource, MatTable } from '@angular/material'
 import { BurritoService } from '../core/services/burrito.service'
 
@@ -14,6 +14,8 @@ export class TableComponent implements OnInit {
 
   constructor(private burritoService: BurritoService) { }
 
+  @ViewChild(MatSort) sort: MatSort;
+
   ngOnInit() {
     /*this.burritoService.getBurritoReviews()
       .subscribe(reviews => {
@@ -25,6 +27,11 @@ export class TableComponent implements OnInit {
         this.burritos.data = tempArray
       })*/
       
-        this.burritos.data = this.burritoService.burritos
+      this.burritoService.getBurritos().subscribe(data => (this.burritos.data = data));
+      this.burritos.sort = this.sort;
+  }
+
+  applyFilter(filterValue: string) {
+    this.burritos.filter = filterValue.trim().toLowerCase();
   }
 }

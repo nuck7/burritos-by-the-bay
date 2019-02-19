@@ -1,7 +1,7 @@
-<mat-card *ngFor="let review of reviews" class="review-card">
+<mat-card *ngFor="let review of reviews | async" class="review-card">
   <mat-card-header>
     <!-- <div mat-card-avatar class="review-header-image"></div> -->
-    <mat-card-title>{{ review.data().restaurant_name }}</mat-card-title>
+    <mat-card-title>{{ review.restaurant_name }}</mat-card-title>
     <!--<mat-card-subtitle>Dog Breed</mat-card-subtitle>-->
   </mat-card-header>
   <mat-card-content>
@@ -13,28 +13,28 @@
         <mat-tab-group>
           <mat-tab label="Details">
             <mat-list>
-              <mat-list-item>Rating: {{ review.data().overall_rating }}</mat-list-item>
-              <mat-list-item>Order: {{ review.data().order }} - ${{review.data().cost}}</mat-list-item>
-              <mat-list-item>Meat: {{ review.data().meat_type }} - {{ review.data().meat }}</mat-list-item>
-              <mat-list-item>Beans: {{ review.data().beans_type | titlecase }} - {{ review.data().beans }}</mat-list-item>
-              <mat-list-item>Rice: {{ review.data().rice }}</mat-list-item>
-              <mat-list-item>Guacamole: {{ review.data().guacamole }}</mat-list-item>
-              <mat-list-item>Crema: {{ review.data().crema }}</mat-list-item>
-              <mat-list-item>Salsa: {{ review.data().salsa }}</mat-list-item>
-              <mat-list-item>Tortilla: {{ review.data().tortilla }}</mat-list-item>
-              <mat-list-item>Cheese: {{ review.data().cheese }}</mat-list-item>
-              <mat-list-item>Size: {{ review.data().size }}</mat-list-item>
-              <mat-list-item>Taste: {{ review.data().taste }}</mat-list-item>
+              <mat-list-item>Rating: {{ review.overall_rating }}</mat-list-item>
+              <mat-list-item>Order: {{ review.order }} - ${{review.cost}}</mat-list-item>
+              <mat-list-item>Meat: {{ review.meat_type }} - {{ review.meat }}</mat-list-item>
+              <mat-list-item>Beans: {{ review.beans_type | titlecase }} - {{ review.beans }}</mat-list-item>
+              <mat-list-item>Rice: {{ review.rice }}</mat-list-item>
+              <mat-list-item>Guacamole: {{ review.guacamole }}</mat-list-item>
+              <mat-list-item>Crema: {{ review.crema }}</mat-list-item>
+              <mat-list-item>Salsa: {{ review.salsa }}</mat-list-item>
+              <mat-list-item>Tortilla: {{ review.tortilla }}</mat-list-item>
+              <mat-list-item>Cheese: {{ review.cheese }}</mat-list-item>
+              <mat-list-item>Size: {{ review.size }}</mat-list-item>
+              <mat-list-item>Taste: {{ review.taste }}</mat-list-item>
             </mat-list>
           </mat-tab>
           <mat-tab label="Description">
             <p>
-              {{ review.data().comments }}
+              {{ review.comments }}
             </p>
           </mat-tab>
           <mat-tab label="Other Notes">
             <p>
-              {{ review.data().other }}
+              {{ review.other }}
             </p>
           </mat-tab>
         </mat-tab-group>
@@ -42,7 +42,7 @@
     </section>
   </mat-card-content>
   <mat-card-actions>
-    <a [routerLink]="['/form']" [queryParams]="{review: review.id}">
+    <a [routerLink]="['/form']" [queryParams]="{review: review.key}">
       <button mat-button>EDIT</button>
     </a>
     <button mat-button>SHARE</button>

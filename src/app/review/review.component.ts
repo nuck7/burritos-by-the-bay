@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 import { BurritoService } from '../core/services/burrito.service'
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-review',
@@ -8,7 +9,7 @@ import { BurritoService } from '../core/services/burrito.service'
   styleUrls: ['./review.component.css']
 })
 export class ReviewComponent implements OnInit {
-  reviews = this.burritoService.burritos
+  reviews = this.burritoService.getBurritos();
 
   constructor(router: Router, private burritoService: BurritoService) { }
 

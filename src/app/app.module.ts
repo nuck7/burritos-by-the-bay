@@ -27,6 +27,7 @@ import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatSortModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatToolbarModule,
     MatCardModule,
     MatIconModule,
+    MatSortModule,
     MatButtonModule,
     MatListModule,
     MatTabsModule,

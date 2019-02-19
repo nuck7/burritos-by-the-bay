@@ -1,30 +1,29 @@
-<mat-card *ngIf="review">
+<!--<mat-card *ngIf="review">-->
+  <mat-card>
   <mat-card-header>Edit Review</mat-card-header>
   <mat-card-content>
-    <form class="example-form">
+    <form class="example-form" #f="ngForm" name="burrito-form">
       <!--<mat-grid-list cols="2" rowHeight="1000px">
         <mat-grid-tile>-->
-
-
           <mat-form-field class="example-full-width">
-            <input matInput [(ngModel)]="restaurant_name" name="restaurant_name" placeholder="Restaurant Name" [value]="review.data().restaurant_name">
+            <input matInput name="restaurant_name" placeholder="Restaurant Name" [ngModel]="review?.restaurant_name">
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <input matInput [(ngModel)]="order" name="order" placeholder="Order" [value]="review.data().order">
+            <input matInput name="order" placeholder="Order" [ngModel]="review?.order">
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <textarea matInput [(ngModel)]="comments" name="comments" placeholder="Comments" [value]="review.data().comments"></textarea>
+            <textarea matInput name="comments" placeholder="Comments" [ngModel]="review?.comments"></textarea>
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <input matInput [(ngModel)]="cost" name="cost" placeholder="Cost" [value]="review.data().cost">
+            <input matInput name="cost" placeholder="Cost" [ngModel]="review?.cost">
             <span matPrefix>$&nbsp;</span>
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <mat-select [(ngModel)]="meat_type" name="meat_type" placeholder="Meat Type" [value]="review.data().meat_type">
+            <mat-select name="meat_type" placeholder="Meat Type" [ngModel]="review?.meat_type">
               <mat-option *ngFor="let meat of meat_type_options" [value]="meat.value">
                 {{meat.label}}
               </mat-option>
@@ -32,11 +31,11 @@
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <input matInput [(ngModel)]="meat" type="number" name="meat" placeholder="Meat" [value]="review.data().meat">
+            <input matInput type="number" name="meat" placeholder="Meat" [ngModel]="review?.meat">
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <mat-select [(ngModel)]="beans_type" name="beans_type" placeholder="Beans Type" [value]="review.data().beans_type">
+            <mat-select name="beans_type" placeholder="Beans Type" [ngModel]="review?.beans_type">
               <mat-option *ngFor="let bean of beans_type_options" [value]="bean.value">
                 {{bean.label}}
               </mat-option>
@@ -44,15 +43,15 @@
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <input matInput [(ngModel)]="beans" type="number" name="beans" placeholder="Beans" [value]="review.data().beans">
+            <input matInput type="number" name="beans" placeholder="Beans" [ngModel]="review?.beans">
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <input matInput [(ngModel)]="rice" type="number" name="rice" placeholder="Rice" [value]="review.data().rice">
+            <input matInput type="number" name="rice" placeholder="Rice" [ngModel]="review?.rice">
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <mat-select [(ngModel)]="guacamole_type" name="guacamole_type" placeholder="Guacamole Type" [value]="review.data().guacamole_type">
+            <mat-select name="guacamole_type" placeholder="Guacamole Type" [ngModel]="review?.guacamole_type">
               <mat-option *ngFor="let guac of guacamole_type_options" [value]="guac.value">
                 {{guac.label}}
               </mat-option>
@@ -60,62 +59,56 @@
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <input matInput [(ngModel)]="guacamole" type="number" name="guacamole" placeholder="Guacamole" [value]="review.data().guacamole">
-          </mat-form-field>
-
-        <!--</mat-grid-tile>
-        <mat-grid-tile>-->
-
-
-          <mat-form-field class="example-full-width">
-            <input matInput [(ngModel)]="crema" type="number" name="crema" placeholder="Crema" [value]="review.data().crema">
+            <input matInput type="number" name="guacamole" placeholder="Guacamole" [ngModel]="review?.guacamole">
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <input matInput [(ngModel)]="salsa" type="number" name="salsa" placeholder="Salsa" [value]="review.data().salsa">
-          </mat-form-field>
-          <mat-form-field class="example-full-width">
-            <input matInput [(ngModel)]="tortilla" type="number" name="tortilla" placeholder="Tortilla" [value]="review.data().tortilla">
+            <input matInput type="number" name="crema" placeholder="Crema" [ngModel]="review?.crema">
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <input matInput [(ngModel)]="cheese" type="number" name="cheese" placeholder="Cheese" [value]="review.data().cheese">
+            <input matInput type="number" name="salsa" placeholder="Salsa" [ngModel]="review?.salsa">
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput type="number" name="tortilla" placeholder="Tortilla" [ngModel]="review?.tortilla">
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <textarea matInput [(ngModel)]="other" name="other" placeholder="Other" [value]="review.data().other"></textarea>
+            <input matInput type="number" name="cheese" placeholder="Cheese" [ngModel]="review?.cheese">
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <input matInput [(ngModel)]="size" type="number" name="size" placeholder="Size" [value]="review.data().size">
+            <textarea matInput name="other" placeholder="Other" [ngModel]="review?.other"></textarea>
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <input matInput [(ngModel)]="taste" type="number" name="taste" placeholder="Taste" [value]="review.data().taste">
-          </mat-form-field>
-          <mat-form-field class="example-full-width">
-            <input matInput [(ngModel)]="overall_rating" type="number" name="overall_rating" placeholder="Overall Rating"
-              [value]="review.data().overall_rating">
+            <input matInput type="number" name="size" placeholder="Size" [ngModel]="review?.size">
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <input matInput [(ngModel)]="picture" name="picture" placeholder="Picture" [value]="review.data().picture">
+            <input matInput type="number" name="taste" placeholder="Taste" [ngModel]="review?.taste">
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput type="number" name="overall_rating" placeholder="Overall Rating"
+              [ngModel]="review?.overall_rating">
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <input matInput [matDatepicker]="picker" [(ngModel)]="date" name="date" placeholder="Choose a date" [value]="parseDate(review.data().date)">
+            <input matInput name="picture" placeholder="Picture" [ngModel]="review?.picture">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <input matInput [matDatepicker]="picker" name="date" placeholder="Choose a date" [ngModel]="review?.date"> <!--[value]="parseDate(review?.date)">-->
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <input matInput [(ngModel)]="yelp_link" name="yelp_link" placeholder="Yelp Link" [value]="review.data().yelp_link">
+            <input matInput name="yelp_link" placeholder="Yelp Link" [ngModel]="review?.yelp_link">
           </mat-form-field>
-        
-        <!--</mat-grid-tile>
-      </mat-grid-list>-->
 
-      <button mat-raised-button color="primary" (click)="updateReview(review.id)">SAVE</button>
+      <button mat-raised-button color="primary" *ngIf="review" (click)="updateReview(review?.key)">SAVE</button>
+      <button mat-raised-button color="primary" *ngIf="!review" (click)="submitReview(f.value)">SUBMIT</button>
     </form>
   </mat-card-content>
 </mat-card>
