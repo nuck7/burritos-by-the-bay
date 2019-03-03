@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore'
 import { MatSnackBar } from '@angular/material';
 
@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material';
   providedIn: 'root'
 })
 export class BurritoService {
+  @Output() filteredBurritoList: EventEmitter<any> = new EventEmitter();
 
   // public burritos = []
   // constructor(private afs: AngularFirestore, public snackBar: MatSnackBar) {
@@ -39,6 +40,10 @@ export class BurritoService {
 
   getBurritos() {
     return this.afs.collection('burritos').valueChanges();
+  }
+
+  getBurritosWithFilter(filter) {
+    this.filteredBurritoList.emit(this.afs.collection('burritos', ref => ref.where('beans', '==', 11)).valueChanges())
   }
 
   updateBurritoReview(review_id, review_values) {

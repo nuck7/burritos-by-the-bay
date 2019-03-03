@@ -3,11 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { ReviewComponent } from './review/review.component';
 import { TableComponent } from './table/table.component';
 import { ReviewFormComponent } from './review-form/review-form.component';
+import { BurritoListPageComponent } from './burrito-list-page/burrito-list-page.component';
 
 const routes: Routes = [
   {
     path: 'review',
-    component: ReviewComponent,
+    component: BurritoListPageComponent,
     pathMatch: 'full'
   },
   {

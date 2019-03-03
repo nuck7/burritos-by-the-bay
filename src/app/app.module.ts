@@ -28,6 +28,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSortModule } from '@angular/material';
+import { FilterComponent } from './filter/filter.component';
+import { BurritoListPageComponent } from './burrito-list-page/burrito-list-page.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { MatSortModule } from '@angular/material';
     NavbarComponent,
     ReviewComponent,
     TableComponent,
-    ReviewFormComponent
+    ReviewFormComponent,
+    FilterComponent,
+    BurritoListPageComponent
   ],
   imports: [
     BrowserModule,
