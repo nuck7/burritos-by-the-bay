@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Filter } from '../shared/models/filter.model';
 import { BurritoService } from '../core/services/burrito.service';
 import { Burrito } from '../shared/models/burrito.model';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { switchMap, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-burrito-list-page',
@@ -10,17 +11,23 @@ import { Observable } from 'rxjs';
   styleUrls: ['./burrito-list-page.component.css']
 })
 export class BurritoListPageComponent implements OnInit {
-  filter: Array<Filter> = [];
-  reviews: Observable<Burrito>;
+  filter = new Subject<Filter>()
+  reviews: Observable<Burrito[]>
 
   constructor(private burritoService: BurritoService) {
 
   }
 
   ngOnInit() {
-    this.burritoService.filteredBurritoList.subscribe(data => {
-      this.reviews = data;
-      console.log(`Burrito list page ${data}`)
-    })
+    this.reviews = this.filter.pipe(
+      startWith({}),
+      switchMap(filter => this.burritoService.getBurritosWithFilter(filter))
+    )
+  }
+
+
+  onFilterChange(filter) {
+    console.log(`Filter CHANGED ${JSON.stringify(filter)} \n\n ${JSON.stringify(filter.source)}`)
+    this.filter.next(filter)
   }
 }

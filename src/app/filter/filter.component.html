@@ -1,3 +1,99 @@
-<mat-card>
-  <button mat-stroked-button color="primary" (click)="getBurritosWithFilter()">Filter</button>
+<mat-card class="filter">
+  <form [formGroup]="filterForm" (ngSubmit)="emitFilterChange()">
+    <mat-form-field class="example-full-width">
+      <input matInput name="restaurant_name" formControlName="restaurant_name" placeholder="Restaurant Name">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput name="order" formControlName="order" placeholder="Order">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <textarea matInput name="comments" formControlName="comments" placeholder="Comments"></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput name="cost" formControlName="cost" placeholder="Cost">
+      <span matPrefix>$&nbsp;</span>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-select name="meat_type" formControlName="meat_type" placeholder="Meat Type">
+        <mat-option *ngFor="let meat of meat_type_options" [(value)]="meat.value">
+          {{meat.label}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput type="number" name="meat" formControlName="meat" placeholder="Meat">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-select name="beans_type" formControlName="beans_type" placeholder="Beans Type">
+        <mat-option *ngFor="let bean of beans_type_options" [value]="bean.value">
+          {{bean.label}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput type="number" name="beans" formControlName="beans" placeholder="Beans">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput type="number" name="rice" formControlName="rice" placeholder="Rice">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-select name="guacamole_type" formControlName="guacamole_type" placeholder="Guacamole Type">
+        <mat-option *ngFor="let guac of guacamole_type_options" [value]="guac.value">
+          {{guac.label}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput type="number" name="guacamole" formControlName="guacamole" placeholder="Guacamole">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput type="number" name="crema" formControlName="crema" placeholder="Crema">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput type="number" name="salsa" formControlName="salsa" placeholder="Salsa">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput type="number" name="tortilla" formControlName="tortilla" placeholder="Tortilla">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput type="number" name="cheese" formControlName="cheese" placeholder="Cheese">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <textarea matInput name="other" formControlName="other" placeholder="Other"></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput type="number" name="size" formControlName="size" placeholder="Size">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput type="number" name="taste" formControlName="taste" placeholder="Taste">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput type="number" name="overall_rating" formControlName="overall_rating" placeholder="Overall Rating">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput [matDatepicker]="picker" name="date" formControlName="date" placeholder="Review date">
+      <!--[value]="parseDate(review?.date)">-->
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <button mat-stroked-button class="filter-button" type="submit" color="primary">Filter</button>
+  </form>
 </mat-card>

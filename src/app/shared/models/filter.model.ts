@@ -18,5 +18,4 @@ export class Filter {
     overall_rating: number;
     picture: string;
     date: Date;
-    yelp_link: string;
 }

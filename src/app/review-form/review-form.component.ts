@@ -108,7 +108,6 @@ export class ReviewFormComponent implements OnInit {
     return parsedDate.value
   }
   submitReview(formValues) {
-    console.log(`Form data: ${JSON.stringify(formValues)}`)
     this.burritoService.addBurrito(formValues)
   }
 
@@ -138,7 +137,6 @@ export class ReviewFormComponent implements OnInit {
       tortilla: this.tortilla,
       yelp_link: this.yelp_link
     }*/
-    console.log(`form: ${review_id}`)
     this.burritoService.updateBurritoReview(review_id, review_id)
   }
 }
