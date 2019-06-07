@@ -108,7 +108,9 @@
           </mat-form-field>
 
       <button mat-raised-button color="primary" *ngIf="review" (click)="updateReview(review?.key)">SAVE</button>
-      <button mat-raised-button color="primary" *ngIf="!review" (click)="submitReview(f.value)">SUBMIT</button>
+      <!--
+        <button mat-raised-button color="primary" *ngIf="!review" (click)="submitReview(f.value)">SUBMIT</button>
+      -->
     </form>
   </mat-card-content>
 </mat-card>

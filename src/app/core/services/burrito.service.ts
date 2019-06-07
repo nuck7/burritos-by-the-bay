@@ -1,28 +1,14 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore'
 import { MatSnackBar } from '@angular/material';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/';
+import { map } from 'rxjs/operators';
 import { Burrito } from 'src/app/shared/models/burrito.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BurritoService {
-
-
-  // public burritos = []
-  // constructor(private afs: AngularFirestore, public snackBar: MatSnackBar) {
-  //   let requestCollection = this.afs.collection('burritos')
-  //   requestCollection.get()
-  //     .subscribe(reviews => {
-  //       //let tempArray = []
-  //       reviews.forEach(review => {
-  //         this.burritos.push(review)
-  //         //console.log(`REVIEW: ${JSON.stringify(review.data())}`)
-  //       })
-  //       //this.burritos.data = tempArray
-  //     })
-  // }
 
   constructor(private afs: AngularFirestore, public snackBar: MatSnackBar) { }
 
@@ -36,11 +22,11 @@ export class BurritoService {
   }
 
   getBurritos() {
-    return this.afs.collection('burritos').valueChanges();
+    return this.afs.collection('burritos').valueChanges()
   }
 
   getBurritosWithFilter(filter) {
-    return this.afs.collection<Burrito>('burritos', ref => ref.where('beans', '==', 11)).valueChanges()
+    return this.afs.collection('burritos', ref => this.createQueryFromFilter(ref, filter)).valueChanges() as Observable<Burrito[]>
   }
 
   updateBurritoReview(review_id, review_values) {
@@ -59,18 +45,14 @@ export class BurritoService {
       })
   }
 
-  /*createBurritoReview() {
-    let requestCollection = this.afs.collection('burritos')
-    requestCollection.doc(review_id).create(review_values)
-      .then(() => {
-        this.snackBar.open('Burrito Review Created!', '', {
-          duration: 1500,
-        })
-      })
-      .catch((error) => {
-        this.snackBar.open('Error Creating Burrito Review: ' + error, '', {
-          duration: 1500,
-        })        
-      })
-  }*/
+  createQueryFromFilter(ref, filter) {
+    let query = ref
+
+    for (var filterOption in filter) {
+       if (filter[filterOption]) {
+        query = query.where(filterOption, '==', filter[filterOption])
+      }
+    }
+    return query
+  }
 }

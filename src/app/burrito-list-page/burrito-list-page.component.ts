@@ -26,8 +26,11 @@ export class BurritoListPageComponent implements OnInit {
   }
 
 
-  onFilterChange(filter) {
-    console.log(`Filter CHANGED ${JSON.stringify(filter)} \n\n ${JSON.stringify(filter.source)}`)
-    this.filter.next(filter)
+  onFilterChange(newFilter) {
+    console.log(`Filter CHANGED ${JSON.stringify(newFilter)}`)
+    this.burritoService.getBurritosWithFilter(newFilter)
+
+
+    this.filter.next(newFilter)
   }
 }

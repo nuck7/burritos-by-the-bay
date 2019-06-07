@@ -38,7 +38,6 @@ export class FilterComponent implements OnInit {
     taste: new FormControl(''),
     overall_rating: new FormControl(''),
     date: new FormControl(''),
-
   })
 
   constructor(private burritoService: BurritoService) { }
@@ -47,8 +46,6 @@ export class FilterComponent implements OnInit {
   }
 
   emitFilterChange(filter) {
-    console.log(`Filter change: ${JSON.stringify(this.filterForm.value)}`)
-
-    //this.filterChange.emit(filter)
+    this.filterChange.emit(filter)
   }
 }

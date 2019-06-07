@@ -1,5 +1,5 @@
 <mat-card class="filter">
-  <form [formGroup]="filterForm" (ngSubmit)="emitFilterChange()">
+  <form [formGroup]="filterForm" (ngSubmit)="emitFilterChange(filterForm.value)">
     <mat-form-field class="example-full-width">
       <input matInput name="restaurant_name" formControlName="restaurant_name" placeholder="Restaurant Name">
     </mat-form-field>
